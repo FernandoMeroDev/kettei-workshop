@@ -1,11 +1,912 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kettei Workshop</title>
+    <title>Kettei Workshop // Armería de Softcombat</title>
+    <meta name="description" content="Réplicas de softcombat de alta calidad y listas para entrenar. Explora nuestro catálogo de espadas, arcos, escudos y dagas elegantes. ¡Encarga la tuya ya!">
+    <!-- Google Fonts: Cinzel para elegancia gótica/clásica y Montserrat para lectura técnica limpia -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.ico">
 </head>
 <body>
-    <p>Hola Mundo!</p>
+
+    <!-- ==================== HEADER FIJO ==================== -->
+    <header class="site-header">
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-logo">
+                <div class="brand-emblem" aria-hidden="true">
+                    <!-- Icono minimalista de espadas cruzadas en blanco y negro -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8">
+                        <path d="M14.5 17.5L3 6V3h3l11.5 11.5"/>
+                        <path d="M13 19l6-6"/>
+                        <path d="M16 16l4 4"/>
+                        <path d="M19 21l2-2"/>
+                        <path d="M9.5 17.5L21 6V3h-3L6.5 14.5"/>
+                        <path d="M11 19l-6-6"/>
+                        <path d="M8 16l-4 4"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">KETTEI WORKSHOP</span>
+                    <span class="brand-subtitle">Armería de Softcombat</span>
+                </div>
+            </a>
+            <div class="flex">
+                <nav class="main-nav" aria-label="Navegación principal">
+                    <a href="#catalogo">Catálogo</a>
+                </nav>
+
+                <a href="#modal-encargo" class="header-cta">Encargar Réplica</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    <span>Colección Monocromática // Hecho a Mano</span>
+                </div>
+                <h1 class="hero-title">
+                    ELEGANCIA LETAL EN CADA DUELO.
+                    <span>Réplicas de alto impacto para tu escuadra.</span>
+                </h1>
+                <p class="hero-description">
+                    Diseñadas para practicantes de softcombat que buscan realismo, durabilidad, seguridad en estocada y una estética sobria en plata y negro abismal. Olvídate de construir: equipa tu arma y entra directo al combate.
+                </p>
+                <div class="hero-actions">
+                    <a href="#catalogo" class="btn-primary">Explorar el Arsenal</a>
+                    <a href="#clases" class="btn-outline">Ver Clases de Combate</a>
+                </div>
+
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <strong>4 Clases</strong>
+                        <span>Paladín · Arquero · Espadachín · Lanzero</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>100%</strong>
+                        <span>Acolchado Seguro</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>Realistas</strong>
+                        <span>Ejecución de técnicas historicas.</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>Escuadra</strong>
+                        <span>Packs listos para 4vs4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Escaparate principal inspirado en paladin.png -->
+            <div class="hero-showcase-frame">
+                <span class="corner-ornament corner-tl"></span>
+                <span class="corner-ornament corner-tr"></span>
+                <span class="corner-ornament corner-bl"></span>
+                <span class="corner-ornament corner-br"></span>
+
+                <div class="hero-visual-stage">
+                    <!-- Si paladin.png está en la misma carpeta se muestra automáticamente; si no, luce el SVG de tormenta y montante -->
+                    <img src="media/paladin.png" alt="Combatiente Paladín con Montante en cielo de tormenta" class="reference-photo" onerror="this.style.display='none'">
+                    
+                    <!-- Placeholder Vectorial Estilizado con el contorno luminoso blanco de las fotos de referencia -->
+                    <svg class="silhouette-svg-fallback" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="stormGlow" cx="52%" cy="40%" r="50%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+                                <stop offset="55%" stop-color="#6e727d" stop-opacity="0.12"/>
+                                <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- Luz de tormenta trasera -->
+                        <circle cx="320" cy="170" r="170" fill="url(#stormGlow)"/>
+                        <!-- Silueta de gabardina oscura, camisa blanca y corbata negra -->
+                        <path d="M275 395 L292 260 L285 160 L315 135 L355 135 L385 165 L395 265 L418 395 L368 395 L358 345 L312 345 L304 395 Z" fill="#0f0f14" stroke="#ffffff" stroke-width="1.6"/>
+                        <!-- Camisa blanca y corbata -->
+                        <polygon points="322,140 348,140 344,265 320,260" fill="#f4f4f6"/>
+                        <polygon points="332,148 340,148 341,235 335,246 330,235" fill="#141419"/>
+                        <!-- Cabeza de perfil -->
+                        <circle cx="332" cy="105" r="24" fill="#18181f" stroke="#ffffff" stroke-width="1.5"/>
+                        <!-- Mandoble / Espada Larga Plateada inclinada igual a paladin.png -->
+                        <g transform="rotate(-24 275 215)">
+                            <!-- Hoja acolchada plateada -->
+                            <rect x="45" y="198" width="225" height="20" rx="8" fill="#c8cace" stroke="#ffffff" stroke-width="1.5"/>
+                            <line x1="55" y1="208" x2="265" y2="208" stroke="#7d8087" stroke-width="1.5"/>
+                            <!-- Guarda cruzada acolchada -->
+                            <rect x="264" y="172" width="18" height="72" rx="5" fill="#b8bac0" stroke="#ffffff" stroke-width="1.5"/>
+                            <!-- Empuñadura a dos manos y pomo plateado -->
+                            <rect x="282" y="204" width="65" height="8" fill="#1c1c22" stroke="#ffffff" stroke-width="1"/>
+                            <rect x="345" y="197" width="18" height="22" rx="4" fill="#d0d2d6" stroke="#ffffff" stroke-width="1.4"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="showcase-caption">
+                    <span>Estética Oficial // Serie Tormenta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECCIÓN CATÁLOGO DE RÉPLICAS ==================== -->
+    <section id="catalogo" class="catalog-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Inventario de Forja</span>
+                <h2 class="section-title">Catálogo de Réplicas</h2>
+                <p class="section-subtitle">Selecciona tu especialidad de combate. Todas las piezas se entregan listas para entrenamiento intensivo.</p>
+                <div class="section-divider"><span></span></div>
+            </div>
+
+            <!-- Controles de Filtro con Puro CSS -->
+            <input type="radio" name="weapon-filter" id="filter-all" class="filter-radio" checked>
+            <input type="radio" name="weapon-filter" id="filter-rols" class="filter-radio">
+            <input type="radio" name="weapon-filter" id="filter-individual" class="filter-radio">
+
+            <div class="filter-bar" role="tablist" aria-label="Filtrar armas por clase">
+                <label for="filter-all" class="filter-label">Todo el Arsenal</label>
+                <label for="filter-rols" class="filter-label">Por Clases</label>
+                <label for="filter-individual" class="filter-label">Piezas Individuales</label>
+            </div>
+
+            <!-- GRID DE PRODUCTOS -->
+            <div class="catalog-grid">
+
+                <!-- 1. MANDOBLE / PALADÍN (paladin.png) -->
+                <article class="product-card" data-category="rols individual">
+                    <div class="card-media">
+                        <span class="class-badge">Clase: Paladín</span>
+                        <img src="media/paladin.png" alt="Mandoble a dos manos Paladín" class="reference-photo" onerror="this.style.display='none'">
+                        <!-- Ilustración SVG Placeholder de la Espada a Dos Manos -->
+                        <svg class="silhouette-svg-fallback" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(-18 250 155)">
+                                <!-- Hoja larga plateada -->
+                                <rect x="45" y="142" width="280" height="24" rx="10" fill="#c7c9ce" stroke="#ffffff" stroke-width="2"/>
+                                <line x1="60" y1="154" x2="315" y2="154" stroke="#6c6f78" stroke-width="2"/>
+                                <!-- Guarda cruzada gruesa -->
+                                <rect x="322" y="106" width="22" height="96" rx="6" fill="#d4d6db" stroke="#ffffff" stroke-width="2"/>
+                                <!-- Mango largo a dos manos expuesto con pomo contrapesado -->
+                                <rect x="344" y="149" width="84" height="10" fill="#17171d" stroke="#ffffff" stroke-width="1.4"/>
+                                <rect x="426" y="140" width="24" height="28" rx="5" fill="#cfd1d6" stroke="#ffffff" stroke-width="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">MANDOBLE DE LÍNEA</span>
+                        <h3 class="product-title">Montante "Paladín" a Dos Manos</h3>
+                        <p class="product-desc">
+                            Espada larga de gran envergadura con hoja cilíndrica-ovalada en acabado plata satinado, guarda recta reforzada para bloqueos y empuñadura extendida con pomo de seguridad.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Longitud Total</strong>135 cm (2 manos)</div>
+                            <div class="spec-item"><strong>Núcleo Interno</strong>Tubo PVC 3/4"</div>
+                            <div class="spec-item"><strong>Acolchado</strong>Espuma de alta densidad forrada con Ductape</div>
+                            <div class="spec-item"><strong>Balance</strong>Ideal para ejercer palanca</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 60%;"></div></div>
+                                <span class="stat-val">6.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 50%;"></div></div>
+                                <span class="stat-val">5.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 75%;"></div></div>
+                                <span class="stat-val">7.5</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$12</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. ARCO TÁCTICO + FLECHAS + DAGA (arquero.png) -->
+                <article class="product-card" data-category="rols">
+                    <div class="card-media">
+                        <span class="class-badge">Clase: Arquero</span>
+                        <img src="media/arquero.png" alt="Arco táctico de softcombat con flechas acolchadas" class="reference-photo" onerror="this.style.display='none'">
+                        <!-- Ilustración SVG Placeholder del Arco y Flecha de Punta Esférica -->
+                        <svg class="silhouette-svg-fallback" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Cuerpo del arco -->
+                            <path d="M210 30 Q340 155 210 280" fill="none" stroke="#18181f" stroke-width="10"/>
+                            <path d="M210 30 Q340 155 210 280" fill="none" stroke="#ffffff" stroke-width="2"/>
+                            <!-- Empuñadura central plateada -->
+                            <rect x="266" y="132" width="12" height="46" rx="3" fill="#d0d2d7" stroke="#ffffff" stroke-width="1.5"/>
+                            <!-- Cuerda tensada -->
+                            <line x1="210" y1="30" x2="145" y2="155" stroke="#e4e4e7" stroke-width="1.8"/>
+                            <line x1="210" y1="280" x2="145" y2="155" stroke="#e4e4e7" stroke-width="1.8"/>
+                            <!-- Flecha con punta acolchada esférica segura -->
+                            <line x1="145" y1="155" x2="355" y2="155" stroke="#ffffff" stroke-width="3"/>
+                            <circle cx="368" cy="155" r="14" fill="#d4d4d8" stroke="#ffffff" stroke-width="2"/>
+                            <polygon points="145,155 165,147 160,155 165,163" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">FUEGO DE PRECISIÓN</span>
+                        <h3 class="product-title">Arco Táctico + 3 Flechas + Daga</h3>
+                        <p class="product-desc">
+                            Arco de bamboo flexible con alcanze de 10 metros en acabado negro mate con agarre central reforzado en plata. Incluye lote de 3 flechas con cabezal esférico anti-impacto y daga corta secundaria para el cinturón.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Incluye</strong>Arco + 3 Flechas + Daga</div>
+                            <div class="spec-item"><strong>Punta de Flecha</strong>Esfera acolchada Ø 5.5cm</div>
+                            <div class="spec-item"><strong>Alcanze</strong>10 metros</div>
+                            <div class="spec-item"><strong>Secundaria</strong>Daga incluida</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 100%;"></div></div>
+                                <span class="stat-val">10.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 10%;"></div></div>
+                                <span class="stat-val">1.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 50%;"></div></div>
+                                <span class="stat-val">5.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$12</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. ESPADA CORTA + ESCUDO OCTOGONAL (espadachin.png) -->
+                <article class="product-card" data-category="rols">
+                    <div class="card-media">
+                        <span class="class-badge">Clase: Espadachín</span>
+                        <img src="media/espadachin.png" alt="Espada de una mano y escudo negro con borde plateado" class="reference-photo" onerror="this.style.display='none'">
+                        <!-- Ilustración SVG Placeholder de Espada Corta + Escudo Octogonal -->
+                        <svg class="silhouette-svg-fallback" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Espada de una mano -->
+                            <g transform="rotate(-32 180 155)">
+                                <rect x="65" y="140" width="175" height="22" rx="8" fill="#cfd1d6" stroke="#ffffff" stroke-width="2"/>
+                                <rect x="236" y="112" width="18" height="78" rx="5" fill="#b8bac0" stroke="#ffffff" stroke-width="2"/>
+                                <rect x="254" y="145" width="42" height="12" rx="3" fill="#181820" stroke="#ffffff" stroke-width="1.5"/>
+                            </g>
+                            <!-- Escudo Octogonal Negro con Ribete Plateado idéntico a espadachin.png -->
+                            <polygon points="310,65 375,65 415,105 415,175 375,215 310,215 270,175 270,105" fill="#121216" stroke="#d4d4d8" stroke-width="10"/>
+                            <polygon points="310,65 375,65 415,105 415,175 375,215 310,215 270,175 270,105" fill="none" stroke="#ffffff" stroke-width="2"/>
+                            <line x1="310" y1="65" x2="310" y2="215" stroke="#2c2c35" stroke-width="2"/>
+                            <line x1="375" y1="65" x2="375" y2="215" stroke="#2c2c35" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">DUELISTA DE VANGUARDIA</span>
+                        <h3 class="product-title">Set "Espadachín": Espada + Escudo</h3>
+                        <p class="product-desc">
+                            Combinación clásica de alta velocidad. Espada de una mano con hoja ancha plateada acompañada de un escudo octogonal negro con cantos perimetrales en plata.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Espada 1 Mano</strong>75 cm // Guardia en cruz</div>
+                            <div class="spec-item"><strong>Escudo</strong>Octogonal 50x40cm</div>
+                            <div class="spec-item"><strong>Borde Escudo</strong>Ribete anti-impacto plata</div>
+                            <div class="spec-item"><strong>Agarre de Escudo</strong>Doble correa de antebrazo</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcanze</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 40%;"></div></div>
+                                <span class="stat-val">4.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 80%;"></div></div>
+                                <span class="stat-val">8.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 60%;"></div></div>
+                                <span class="stat-val">6.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$15</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. LANZA DE COMBATE (lazero.png) -->
+                <article class="product-card" data-category="rols individual">
+                    <div class="card-media">
+                        <span class="class-badge">Clase: Lancero</span>
+                        <img src="media/lazero.png" alt="Lanza larga de softcombat con punta acolchada y regatón" class="reference-photo" onerror="this.style.display='none'">
+                        <!-- Ilustración SVG Placeholder de la Lanza Larga con Regatón -->
+                        <svg class="silhouette-svg-fallback" viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(8 250 155)">
+                                <!-- Asta larga negra -->
+                                <rect x="115" y="150" width="310" height="8" fill="#17171f" stroke="#ffffff" stroke-width="1.5"/>
+                                <!-- Punta larga acolchada plateada para estocada segura -->
+                                <rect x="30" y="141" width="95" height="26" rx="12" fill="#cfd1d6" stroke="#ffffff" stroke-width="2"/>
+                                <!-- Regatón / Contrapeso trasero acolchado -->
+                                <rect x="422" y="144" width="34" height="20" rx="7" fill="#c4c6cc" stroke="#ffffff" stroke-width="2"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">CONTROL DE DISTANCIA</span>
+                        <h3 class="product-title">Lanza de Combate "Lancero"</h3>
+                        <p class="product-desc">
+                            Arma de asta de alcance superior con acabado negro profundo, cabezal cilíndrico acolchado para estocadas seguras y regatón trasero amortiguado.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Longitud Total</strong>200 cm // Gran alcance</div>
+                            <div class="spec-item"><strong>Cabezal Punta</strong>Espuma de alta densidad</div>
+                            <div class="spec-item"><strong>Nucleo</strong>Tubo de PVC de 1/2"</div>
+                            <div class="spec-item"><strong>Uso Ideal</strong>Línea media y flanqueo</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 80%;"></div></div>
+                                <span class="stat-val">8.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 40%;"></div></div>
+                                <span class="stat-val">4.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 50%;"></div></div>
+                                <span class="stat-val">5.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$10</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ESPADA CORTA -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Arma: Espada corta</span>
+                        <img src="media/espada_corta.png" alt="Espada corta" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Espada</span>
+                        <h3 class="product-title">Espada Corta</h3>
+                        <p class="product-desc">
+                            Espada de una mano con hoja ancha plateada.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Espada 1 Mano</strong>75 cm // Guardia en cruz</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 40%;"></div></div>
+                                <span class="stat-val">4.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 30%;"></div></div>
+                                <span class="stat-val">3.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 35%;"></div></div>
+                                <span class="stat-val">3.5</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$8</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ESCUDO -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Defensa: Escudo</span>
+                        <img src="media/escudo.png" alt="Escudo" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Escudo</span>
+                        <h3 class="product-title">Escudo Estandar</h3>
+                        <p class="product-desc">
+                            Escudo octogonal negro con cantos perimetrales en plata.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Escudo Estandar</strong>Para torneos</div>
+                            <div class="spec-item"><strong>Acabado</strong>Negro mate</div>
+                            <div class="spec-item"><strong>Material</strong>3 capas de Cartón</div>
+                            <div class="spec-item"><strong>Tamaño</strong>Octogonal 50x40cm</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 50%;"></div></div>
+                                <span class="stat-val">5.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 40%;"></div></div>
+                                <span class="stat-val">4.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$7.5</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Arco -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Arma: Arco</span>
+                        <img src="media/arco.png" alt="Arco" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Arco Táctico</span>
+                        <h3 class="product-title">Arco Estandar</h3>
+                        <p class="product-desc">
+                            (Flechas <strong>NO incluidas</strong>) Arco de bamboo flexible con alcanze de 10 metros en acabado negro mate con agarre central reforzado en plata.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Tamaño</strong>150cm</div>
+                            <div class="spec-item"><strong>Alcanze</strong>10 metros</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 100%;"></div></div>
+                                <span class="stat-val">10.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 50%;"></div></div>
+                                <span class="stat-val">5.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$6</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Flechas -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Munición: Flechas</span>
+                        <img src="media/flechas.png" alt="Flechas" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Munición para Arco</span>
+                        <h3 class="product-title">Flechas</h3>
+                        <p class="product-desc">
+                            Flechas con cabezal esférico anti-impacto. Compatibles con Arco Estandar.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Punta de Flecha</strong>Esfera acolchada Ø 5.5cm</div>
+                            <div class="spec-item"><strong>Tamaño</strong>75cm</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$0.75 Unidad</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Escudo de Gota -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Defensa: Escudo</span>
+                        <img src="media/escudo_gota.png" alt="Escudo de Gota" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Escudo</span>
+                        <h3 class="product-title">Escudo de Gota</h3>
+                        <p class="product-desc">
+                            Escudo normando en forma de gota para máxima cobertura de torso y pierna frente a proyectiles de arquero.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Perfil</strong>Gota / Lágrima Alargada</div>
+                            <div class="spec-item"><strong>Material</strong>4 capas de Cartón</div>
+                            <div class="spec-item"><strong>Acabado</strong>Negro mate</div>
+                            <div class="spec-item"><strong>Tamaño</strong>100cm de alto x 57/32cm de ancho</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 100%;"></div></div>
+                                <span class="stat-val">10.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 60%;"></div></div>
+                                <span class="stat-val">6.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$14</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Daga -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Arma: Daga</span>
+                        <img src="media/daga.png" alt="Espada corta" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Arma secundaria</span>
+                        <h3 class="product-title">Daga</h3>
+                        <p class="product-desc">
+                            Daga corta para usar como arma secundaria en el cinturón o para flexear parrys insanos.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Tamaño</strong>35cm</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 10%;"></div></div>
+                                <span class="stat-val">1.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 10%;"></div></div>
+                                <span class="stat-val">1.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 20%;"></div></div>
+                                <span class="stat-val">2.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$4</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Gafas de protección -->
+                <article class="product-card" data-category="individual">
+                    <div class="card-media">
+                        <span class="class-badge">Seguridad: Gafas</span>
+                        <img src="media/gafas_proteccion.png" alt="Gafas" class="reference-photo">
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">Seguridad</span>
+                        <h3 class="product-title">Gafas de protección</h3>
+                        <p class="product-desc">
+                            Garantizan que nadie sea lastimado en los ojos por las flechas.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Protección</strong>Gafas estandar</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Alcance</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Defensa</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Control</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 0%;"></div></div>
+                                <span class="stat-val">0.0</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Precio</span>
+                                <span class="price-amount">$2.5</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-card">Pedir Réplica</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ARSENAL COMPLETO DE ESCUADRA (completo.png) -->
+                <article class="product-card featured-arsenal" data-category="rols">
+                    <div class="card-media complete-wealponary-card">
+                        <span class="class-badge">Colección Maestra // Escuadras Completas</span>
+                        <img src="media/todas.png" alt="Arsenal completo de softcombat con lanzas cruzadas, espadas, escudos y arcos" class="reference-photo" onerror="this.style.display='none'">
+                        <!-- Ilustración SVG fiel a la composición simétrica de IMG_20261020_220630.png -->
+                        <svg class="silhouette-svg-fallback" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 2 Montantes verticales al centro -->
+                            <rect x="268" y="30" width="12" height="190" rx="5" fill="#c7c9ce" stroke="#ffffff" stroke-width="1.5"/>
+                            <rect x="252" y="88" width="44" height="10" rx="3" fill="#d0d2d7" stroke="#ffffff" stroke-width="1.5"/>
+                            <rect x="312" y="30" width="12" height="190" rx="5" fill="#c7c9ce" stroke="#ffffff" stroke-width="1.5"/>
+                            <rect x="296" y="88" width="44" height="10" rx="3" fill="#d0d2d7" stroke="#ffffff" stroke-width="1.5"/>
+                            <!-- 2 Lanzas cruzadas en X -->
+                            <line x1="120" y1="45" x2="450" y2="235" stroke="#ffffff" stroke-width="3.5"/>
+                            <line x1="450" y1="45" x2="120" y2="235" stroke="#ffffff" stroke-width="3.5"/>
+                            <!-- Escudos octogonales y espadas cortas a la derecha -->
+                            <polygon points="355,145 395,145 415,165 415,205 395,225 355,225 335,205 335,165" fill="#15151b" stroke="#d4d4d8" stroke-width="4"/>
+                            <!-- 6 Flechas alineadas a la izquierda -->
+                            <g stroke="#ffffff" stroke-width="1.8">
+                                <line x1="130" y1="238" x2="245" y2="238"/><circle cx="250" cy="238" r="5" fill="#d4d4d8"/>
+                                <line x1="130" y1="252" x2="245" y2="252"/><circle cx="250" cy="252" r="5" fill="#d4d4d8"/>
+                                <line x1="130" y1="266" x2="245" y2="266"/><circle cx="250" cy="266" r="5" fill="#d4d4d8"/>
+                                <line x1="130" y1="280" x2="245" y2="280"/><circle cx="250" cy="280" r="5" fill="#d4d4d8"/>
+                            </g>
+                            <!-- Escudo lágrima abajo a la derecha -->
+                            <path d="M300 245 C300 228, 370 228, 465 258 C485 266, 485 292, 465 300 C370 325, 300 325, 300 308 Z" fill="#121216" stroke="#d4d4d8" stroke-width="5"/>
+                            <!-- 2 Arcos horizontales en la base -->
+                            <line x1="100" y1="340" x2="480" y2="340" stroke="#ffffff" stroke-width="4"/>
+                            <line x1="100" y1="360" x2="480" y2="360" stroke="#ffffff" stroke-width="4"/>
+                        </svg>
+                    </div>
+                    <div class="card-body">
+                        <span class="product-code">// DOTACIÓN COMPLETA DE CLAN</span>
+                        <h3 class="product-title">Pack "Arsenal de Escuadra" (19 Piezas)</h3>
+                        <p class="product-desc">
+                            El lote completo visto en la armería para armar partidas enteras con tus amigos desde el primer día. Incluye todas las armas principales, secundarias, escudos, arcos, flechas y lentes de protección ocular.
+                        </p>
+                        <div class="specs-list">
+                            <div class="spec-item"><strong>Armas Largas</strong>2 Mandobles + 2 Lanzas</div>
+                            <div class="spec-item"><strong>Cortas y Secundarias</strong>2 Espadas cortas + 2 Dagas</div>
+                            <div class="spec-item"><strong>Defensa Pesada</strong>2 Escudos + 1 Escudo de Lágrima</div>
+                            <div class="spec-item"><strong>Arquería + Seguridad</strong>2 Arcos + 6 Flechas + 8 Gafas de protección</div>
+                        </div>
+                        <div class="stats-box">
+                            <div class="stat-row">
+                                <span>Capacidad</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 100%;"></div></div>
+                                <span class="stat-val">4v4</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Ahorro Pack</span>
+                                <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 90%;"></div></div>
+                                <span class="stat-val">-20%</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price-block">
+                                <span class="price-label">Lote Completo Escuadra</span>
+                                <span class="price-amount">$120.00</span>
+                            </div>
+                            <a href="#modal-encargo" class="btn-primary">Reservar Arsenal Completo</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ARQUETIPOS DE COMBATE ==================== -->
+    <section id="clases" class="archetypes-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Doctrina de Duelo</span>
+                <h2 class="section-title">Los 4 Arquetipos de la Tormenta</h2>
+                <p class="section-subtitle">¿Qué rol tomará cada uno de tus amigos en el campo de batalla?</p>
+                <div class="section-divider"><span></span></div>
+            </div>
+
+            <div class="archetypes-grid">
+                <div class="archetype-panel">
+                    <div class="archetype-num">I</div>
+                    <h3 class="archetype-name">EL PALADÍN</h3>
+                    <span class="archetype-role">Primera Línea · Dos Manos</span>
+                    <p class="archetype-text">
+                        Domina el centro del escenario mediante barridos amplios y estocadas de largo alcance. Su inercia permite recuperar la guardia al instante tras cada tajo.
+                    </p>
+                    <span class="loadout-tag">Equipa: Montante de 135 cm</span>
+                </div>
+
+                <div class="archetype-panel">
+                    <div class="archetype-num">II</div>
+                    <h3 class="archetype-name">EL ARQUERO</h3>
+                    <span class="archetype-role">Hostigamiento · Precisión Táctica</span>
+                    <p class="archetype-text">
+                        Presiona desde la distancia obligando a los rivales a levantar sus escudos. Si alguien logra acortar distancia, desenfunda su daga corta.
+                    </p>
+                    <span class="loadout-tag">Equipa: Arco + 3 Flechas + Daga</span>
+                </div>
+
+                <div class="archetype-panel">
+                    <div class="archetype-num">III</div>
+                    <h3 class="archetype-name">EL ESPADACHÍN</h3>
+                    <span class="archetype-role">Vanguardia · Duelo Cerrado</span>
+                    <p class="archetype-text">
+                        El equilibrio perfecto entre ataque y defensa. Bloquea proyectiles e impactos pesados con el escudo mientras responde con cortes veloces.
+                    </p>
+                    <span class="loadout-tag">Equipa: Espada 90cm + Escudo</span>
+                </div>
+
+                <div class="archetype-panel">
+                    <div class="archetype-num">IV</div>
+                    <h3 class="archetype-name">EL LANCERO</h3>
+                    <span class="archetype-role">Control de Espacio · Asta</span>
+                    <p class="archetype-text">
+                        Mantiene a cualquier oponente fuera de su rango cómodo. Utiliza la punta acolchada como el asta para desviar guardias enemigas.
+                    </p>
+                    <span class="loadout-tag">Equipa: Lanza de 200cm</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ESPECIFICACIONES Y ENCARGOS ==================== -->
+    <section id="ingenieria" class="craft-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">Estándar de Forja</span>
+                <h2 class="section-title">Construcción y Seguridad</h2>
+                <p class="section-subtitle">Hechas para resistir combates intensos cada fin de semana sin perder su forma ni comprometer la integridad física.</p>
+                <div class="section-divider"><span></span></div>
+            </div>
+
+            <div class="craft-grid">
+                <div class="craft-box">
+                    <h3>01 // NÚCLEO Y ESTRUCTURA</h3>
+                    <p>
+                        Cada espada y lanza cuenta con un alma interna rígida de PVC para no chicotear. Los mandobles y lanzas están proporcionados de acuerdo a sus inspiraciones historicas para replicar su funcionamiento y técnicas.
+                    </p>
+                </div>
+                <div class="craft-box">
+                    <h3>02 // PUNTA Y FILO AMORTIGUADO</h3>
+                    <p>
+                        Espuma de celda cerrada de alta absorción recubierta en cinta plateada y negra de alta tracción. Las flechas incluyen cabezales esféricos sobredimensionados anti-penetración.
+                    </p>
+                </div>
+                <div class="craft-box">
+                    <h3>03 // REPARACIÓN Y MANTENIMIENTO</h3>
+                    <p>
+                        Al ser fabricadas en nuestro propio taller y probadas por el grupo, todas las réplicas cuentan con ajustes y mantenimiento de recubrimiento para que duren jornadas completas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Banner de Encargos -->
+            <div id="encargos" class="order-banner">
+                <div>
+                    <span class="section-kicker">Pedidos Abiertos para el Grupo</span>
+                    <h3 class="section-title" style="font-size: 1.9rem; margin-bottom: 0.6rem;">¿Listo para armar tu clase?</h3>
+                    <p style="color: var(--silver-metallic); font-weight: 300; margin-bottom: 1.5rem;">
+                        No pierdas horas cortando espuma o buscando materiales. Elige tu modelo del catálogo y recíbelo listo para el próximo entrenamiento.
+                    </p>
+                    <a href="#modal-encargo" class="btn-primary">Solicitar Mi Réplica Ahora</a>
+                </div>
+
+                <div class="order-steps">
+                    <div class="step-pill">
+                        <span>1</span>
+                        <div><strong>Elige tu Arma/Paquete:</strong> Montante, Arco, Lanza, Espada y Escudo.</div>
+                    </div>
+                    <div class="step-pill">
+                        <span>2</span>
+                        <div><strong>Ajuste a Medida:</strong> Adaptamos el tamaño a tu estatura.</div>
+                    </div>
+                    <div class="step-pill">
+                        <span>3</span>
+                        <div><strong>Entrega en Entrenamiento:</strong> Lista y probada para uso directo.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MODAL DE ENCARGO PURO CSS (:target) ==================== -->
+    <div id="modal-encargo" class="css-modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-dialog">
+            <a href="#catalogo" class="modal-close" title="Cerrar ventana">✕</a>
+            <span class="section-kicker">Contacto</span>
+            <h3 id="modal-title" class="product-title" style="font-size: 1.5rem; margin-bottom: 0.4rem;">Solicitar Réplica de Softcombat</h3>
+            <p style="font-size: 0.82rem; color: var(--silver-muted); margin-bottom: 1.4rem;">
+                Encárganos las armas que quieres recibir para el próximo entrenamiento.
+            </p>
+
+            <form 
+                action="https://wa.me/59391525319" 
+                target="_blank" method="get"
+            >
+                <div style="display: flex; gap: 0.8rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary" style="width: 100%; cursor: pointer;">Contactar via Whatsapp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <p style="font-family: var(--font-display); color: var(--silver-bright); letter-spacing: 0.2em; margin-bottom: 0.4rem;">
+                KETTEI WORKSHOP // ARMERÍA DE SOFTCOMBAT
+            </p>
+            <p>Diseñado con amor por Gemini Pro ⚔️.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

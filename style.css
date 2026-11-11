@@ -1,0 +1,1121 @@
+/* ==========================================================================
+    0. UTILIDADES
+    ========================================================================== */
+.flex {
+    display: flex;
+}
+
+/* ==========================================================================
+    1. VARIABLES Y TOKENS DE DISEÑO (ESTÉTICA MONOCROMÁTICA TORMENTA)
+    ========================================================================== */
+:root {
+    --bg-abyss: #050507;
+    --bg-storm-dark: #0b0b0f;
+    --bg-card: #101015;
+    --bg-card-hover: #16161d;
+    --silver-bright: #ffffff;
+    --silver-metallic: #d4d4d8;
+    --silver-muted: #8e8e96;
+    --ash-dark: #27272f;
+    --border-subtle: rgba(255, 255, 255, 0.14);
+    --border-glow: rgba(255, 255, 255, 0.55);
+    --aura-glow: 0 0 25px rgba(255, 255, 255, 0.18), 0 0 8px rgba(255, 255, 255, 0.12);
+    --aura-strong: 0 0 35px rgba(255, 255, 255, 0.32), 0 0 12px rgba(255, 255, 255, 0.25);
+    
+    --font-display: 'Cinzel', serif;
+    --font-editorial: 'Cormorant Garamond', serif;
+    --font-sans: 'Montserrat', sans-serif;
+    
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+    2. RESET Y BASE ATMOSFÉRICA (EFECTO NUBES DE TORMENTA EN CSS PURO)
+    ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-abyss);
+    color: var(--silver-metallic);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+}
+
+body {
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--bg-abyss);
+    /* Textura multicapa que emula el fondo de nubes de tormenta iluminadas a contraluz de las fotos */
+    background-image: 
+        radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.12) 0%, rgba(160, 165, 175, 0.04) 28%, transparent 60%),
+        radial-gradient(ellipse at 15% 45%, rgba(90, 95, 105, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 65%, rgba(110, 115, 125, 0.08) 0%, transparent 55%),
+        radial-gradient(circle at 50% 88%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #040406 0%, #0b0b10 35%, #07070a 70%, #040405 100%);
+    background-attachment: fixed;
+}
+
+/* Niebla ambiental sutil superpuesta */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, transparent 0%, rgba(0, 0, 0, 0.65) 100%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 3px);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 92%;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ornamentos divisorios de estilo gótico/elegante */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1.5rem auto 3rem;
+    max-width: 420px;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+}
+
+.section-divider span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--silver-bright);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+
+/* ==========================================================================
+    3. HEADER FIJO MINIMALISTA
+    ========================================================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5, 5, 7, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.brand-emblem {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--silver-bright);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    box-shadow: var(--aura-glow);
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--silver-bright);
+}
+
+.brand-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--silver-muted);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-right: 30px;
+}
+
+.main-nav a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--silver-metallic);
+    padding: 0.4rem 0;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--silver-bright);
+    box-shadow: 0 0 8px var(--silver-bright);
+    transition: var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.main-nav a:hover {
+    color: var(--silver-bright);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+.header-cta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid var(--silver-bright);
+    border-radius: var(--radius-sm);
+    color: var(--bg-abyss);
+    background: var(--silver-bright);
+    box-shadow: var(--aura-glow);
+    transition: var(--transition-smooth);
+}
+
+.header-cta:hover {
+    background: transparent;
+    color: var(--silver-bright);
+    box-shadow: var(--aura-strong);
+}
+
+/* ==========================================================================
+    4. HERO SECTION (CIELO TORMENTOSO Y ELEGANCIA MONOCROMÁTICA)
+    ========================================================================== */
+.hero-section {
+    position: relative;
+    padding: 5.5rem 0 4.5rem;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-subtle);
+    /* Simulación de nubes dramáticas a contraluz como las fotos de referencia */
+    background: 
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.18) 0%, rgba(120, 125, 135, 0.08) 32%, rgba(5, 5, 7, 0.95) 72%),
+        repeating-radial-gradient(circle at 50% 30%, rgba(255,255,255,0.03) 0px, transparent 60px, rgba(0,0,0,0.4) 120px);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.95rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-metallic);
+    margin-bottom: 1.5rem;
+}
+
+.hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--silver-bright);
+    box-shadow: 0 0 8px #fff;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0.06em;
+    color: var(--silver-bright);
+    margin-bottom: 1.25rem;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.22);
+}
+
+.hero-title span {
+    display: block;
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    color: var(--silver-muted);
+    letter-spacing: 0.04em;
+    margin-top: 0.3rem;
+}
+
+.hero-description {
+    font-size: 1rem;
+    color: var(--silver-metallic);
+    max-width: 580px;
+    margin-bottom: 2.2rem;
+    font-weight: 300;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.95rem 2rem;
+    background: var(--silver-bright);
+    color: var(--bg-abyss);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--silver-bright);
+    box-shadow: var(--aura-glow);
+    transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--silver-bright);
+    box-shadow: var(--aura-strong);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--silver-bright);
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    transition: var(--transition-smooth);
+}
+
+.btn-outline:hover {
+    border-color: var(--silver-bright);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: var(--aura-glow);
+}
+
+.hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.metric-item strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    color: var(--silver-bright);
+    letter-spacing: 0.05em;
+}
+
+.metric-item span {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--silver-muted);
+}
+
+/* Tarjeta Escénica Derecha del Hero (Inspirada en la silueta con traje y contraluz) */
+.hero-showcase-frame {
+    position: relative;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    background: 
+        radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.25) 0%, rgba(80, 84, 92, 0.12) 42%, rgba(8, 8, 11, 0.98) 80%);
+    padding: 1.5rem;
+    box-shadow: var(--aura-strong), inset 0 0 40px rgba(0, 0, 0, 0.85);
+    overflow: hidden;
+}
+
+/* Esquinas ornamentales */
+.corner-ornament {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--silver-bright);
+    pointer-events: none;
+    z-index: 3;
+}
+.corner-tl { top: 10px; left: 10px; border-top: 2px solid; border-left: 2px solid; }
+.corner-tr { top: 10px; right: 10px; border-top: 2px solid; border-right: 2px solid; }
+.corner-bl { bottom: 10px; left: 10px; border-bottom: 2px solid; border-left: 2px solid; }
+.corner-br { bottom: 10px; right: 10px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.hero-visual-stage {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: 
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,0.26) 0%, rgba(55,58,66,0.28) 38%, #050507 82%);
+}
+
+/* Imagen real si está en la carpeta + Fallback SVG estilizado con el aura blanca de las fotos */
+.reference-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    filter: contrast(1.08) grayscale(15%);
+    transition: transform 0.6s ease;
+}
+
+.hero-showcase-frame:hover .reference-photo,
+.product-card:hover .reference-photo {
+    transform: scale(1.04);
+}
+
+/* SVG de respaldo con efecto de resplandor blanco de recorte igual a las fotos subidas */
+.silhouette-svg-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.65)) drop-shadow(0 0 18px rgba(255, 255, 255, 0.25));
+}
+
+.showcase-caption {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.73rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver-muted);
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.85rem;
+}
+
+.showcase-caption code {
+    color: var(--silver-bright);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+}
+
+/* ==========================================================================
+    5. SISTEMA DE FILTRADO DE CATÁLOGO CON PURO CSS (:checked)
+    ========================================================================== */
+.catalog-section {
+    padding: 5rem 0;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+}
+
+.section-kicker {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--silver-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    color: var(--silver-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-family: var(--font-editorial);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--silver-metallic);
+    margin-top: 0.4rem;
+}
+
+/* Ocultar los radio buttons pero mantenerlos funcionales */
+.filter-radio {
+    display: none;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 3rem;
+}
+
+.filter-label {
+    cursor: pointer;
+    padding: 0.65rem 1.35rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: rgba(16, 16, 21, 0.75);
+    color: var(--silver-muted);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    user-select: none;
+}
+
+.filter-label:hover {
+    color: var(--silver-bright);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Estado activo de las pestañas de filtro */
+#filter-all:checked ~ .filter-bar label[for="filter-all"],
+#filter-rols:checked ~ .filter-bar label[for="filter-rols"],
+#filter-individual:checked ~ .filter-bar label[for="filter-individual"] {
+    background: var(--silver-bright);
+    color: var(--bg-abyss);
+    border-color: var(--silver-bright);
+    box-shadow: var(--aura-glow);
+}
+
+/* Lógica de filtrado CSS para mostrar/ocultar tarjetas */
+#filter-rols:checked ~ .catalog-grid .product-card:not([data-category*="rols"]),
+#filter-individual:checked ~ .catalog-grid .product-card:not([data-category*="individual"]) {
+    display: none;
+}
+
+/* ==========================================================================
+    6. GRID DEL CATÁLOGO Y TARJETAS DE RÉPLICAS
+    ========================================================================== */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: linear-gradient(180deg, rgba(22, 22, 29, 0.9) 0%, rgba(11, 11, 15, 0.96) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.product-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--aura-glow);
+    transform: translateY(-6px);
+}
+
+/* Cabecera de imagen con atmósfera de nubes oscuras idéntica a las fotos */
+.card-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: 
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.24) 0%, rgba(75, 80, 90, 0.22) 38%, #060609 82%);
+    border-bottom: 1px solid var(--border-subtle);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.complete-wealponary-card {
+    aspect-ratio: 10 / 10;
+}
+
+.class-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 4;
+    background: rgba(5, 5, 7, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver-bright);
+    backdrop-filter: blur(6px);
+}
+
+.file-placeholder-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    padding: 0.22rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 0.68rem;
+    color: var(--silver-metallic);
+}
+
+.card-body {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-code {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-muted);
+    margin-bottom: 0.3rem;
+}
+
+.product-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--silver-bright);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.65rem;
+}
+
+.product-desc {
+    font-size: 0.86rem;
+    color: var(--silver-metallic);
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+}
+
+/* Especificaciones técnicas en píldoras monocromáticas */
+.specs-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.3rem;
+    padding: 0.85rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-sm);
+}
+
+.spec-item {
+    font-size: 0.72rem;
+    color: var(--silver-muted);
+}
+
+.spec-item strong {
+    display: block;
+    color: var(--silver-bright);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* Barras de Estadísticas de Combate */
+.stats-box {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 82px 1fr 34px;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--silver-muted);
+}
+
+.stat-bar-track {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c7c86, #ffffff);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    border-radius: 99px;
+}
+
+.stat-val {
+    text-align: right;
+    color: var(--silver-bright);
+    font-weight: 600;
+}
+
+/* Pie de tarjeta: Precio y Acción */
+.card-footer {
+    margin-top: auto;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.price-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-label {
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--silver-muted);
+}
+
+.price-amount {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--silver-bright);
+}
+
+.btn-card {
+    padding: 0.7rem 1.2rem;
+    border: 1px solid var(--silver-bright);
+    background: transparent;
+    color: var(--silver-bright);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-smooth);
+}
+
+.btn-card:hover {
+    background: var(--silver-bright);
+    color: var(--bg-abyss);
+    box-shadow: var(--aura-glow);
+}
+
+/* Tarjeta destacada de ancho completo para el Arsenal Completo */
+.product-card.featured-arsenal {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+}
+
+.product-card.featured-arsenal .card-media {
+    border-bottom: none;
+    border-right: 1px solid var(--border-subtle);
+    height: 100%;
+    min-height: 360px;
+}
+
+/* ==========================================================================
+    7. SECCIÓN DE CLASES / ARQUETIPOS DE COMBATE
+    ========================================================================== */
+.archetypes-section {
+    padding: 4.5rem 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(8, 8, 12, 0.7);
+}
+
+.archetypes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.archetype-panel {
+    padding: 1.8rem 1.5rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(10,10,14,0.95) 100%);
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.archetype-panel:hover {
+    border-color: var(--silver-bright);
+    box-shadow: var(--aura-glow);
+}
+
+.archetype-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.16);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.archetype-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--silver-bright);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+}
+
+.archetype-role {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--silver-muted);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.archetype-text {
+    font-size: 0.84rem;
+    color: var(--silver-metallic);
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.loadout-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--silver-bright);
+}
+
+/* ==========================================================================
+    8. INGENIERÍA Y MATERIALES + MODAL DE PEDIDO PURO CSS (:target)
+    ========================================================================== */
+.craft-section {
+    padding: 5rem 0;
+}
+
+.craft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+}
+
+.craft-box {
+    padding: 2rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+}
+
+.craft-box h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--silver-bright);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+}
+
+.craft-box p {
+    font-size: 0.85rem;
+    color: var(--silver-metallic);
+    font-weight: 300;
+}
+
+/* Sección de Encargos para los amigos de Softcombat */
+.order-banner {
+    margin-top: 4rem;
+    padding: 3rem;
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    background: 
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.14) 0%, transparent 60%),
+        linear-gradient(135deg, #111117 0%, #07070a 100%);
+    box-shadow: var(--aura-glow);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.order-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1.2rem;
+}
+
+.step-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 0.83rem;
+}
+
+.step-pill span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--silver-bright);
+    color: var(--bg-abyss);
+    font-weight: 700;
+    font-size: 0.75rem;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+/* Guía desplegable (<details>) para insertar las fotos reales */
+.photo-guide-details {
+    margin-top: 2.5rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: rgba(16, 16, 22, 0.8);
+    overflow: hidden;
+}
+
+.photo-guide-details summary {
+    padding: 1.1rem 1.5rem;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver-bright);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.photo-guide-content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--silver-metallic);
+}
+
+.file-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.file-chip {
+    padding: 0.65rem 0.9rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: var(--silver-bright);
+}
+
+/* Modal Puro CSS con :target para solicitar réplica sin usar alert() ni JS */
+.css-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.css-modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-dialog {
+    width: 100%;
+    max-width: 540px;
+    background: #0d0d12;
+    border: 1px solid var(--silver-bright);
+    border-radius: var(--radius-md);
+    padding: 2.2rem;
+    box-shadow: var(--aura-strong);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    color: var(--silver-bright);
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--silver-muted);
+    margin-bottom: 0.4rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--silver-bright);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--silver-bright);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* Footer */
+.site-footer {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--silver-muted);
+}
+
+/* ==========================================================================
+    9. RESPONSIVE DESIGN (MÓVIL Y TABLET)
+    ========================================================================== */
+@media (max-width: 960px) {
+    .hero-grid,
+    .product-card.featured-arsenal,
+    .order-banner,
+    .craft-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card.featured-arsenal .card-media {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+        min-height: 260px;
+    }
+
+    .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-nav {
+        gap: 1rem;
+        font-size: 0.72rem;
+    }
+
+    .hero-section {
+        padding: 3.5rem 0;
+    }
+
+    .order-banner {
+        padding: 1.75rem;
+    }
+}
